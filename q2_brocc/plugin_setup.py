@@ -33,11 +33,15 @@ plugin = Plugin(
     citations=[citations['Dollive2012']]
 )
 
+
 def classify_brocc(
         query: DNAFASTAFormat,
         evalue: float=0.00001,
         maxaccepts: int=100,
         blastdb: str="nt",
+        min_species_id: float=95.2,
+        min_genus_id: float=83.05,
+        min_id: float=80.0,
         ) -> pd.DataFrame:
     # Temp output directory for BROCC
     brocc_output_dir = tempfile.mkdtemp()
@@ -59,7 +63,9 @@ def classify_brocc(
             "-i", str(query),
             "-b", blast_outfile.name,
             "-o", brocc_output_dir,
-            "-a", "ITS",
+            "--min_species_id", str(min_species_id),
+            "--min_genus_id", str(min_genus_id),
+            "--min_id", str(min_id),
         ])
         brocc_taxonomy_fp = os.path.join(
             brocc_output_dir, "Standard_Taxonomy.txt")
@@ -93,6 +99,9 @@ plugin.methods.register_function(
         'evalue': Float,
         'maxaccepts': Int % Range(1, None),
         'blastdb': Str,
+        'min_species_id': Float % Range(0.0, 100.0),
+        'min_genus_id': Float % Range(0.0, 100.0),
+        'min_id': Float % Range(0.0, 100.0),
     },
     outputs=[('classification', FeatureData[Taxonomy])],
     input_descriptions={'query': 'Sequences to classify taxonomically.'},
@@ -101,6 +110,22 @@ plugin.methods.register_function(
         'maxaccepts': ('Maximum number of hits to keep for each query. Must '
                        'be in range [0, infinity].'),
         'blastdb': 'BLAST database to use for alignment.',
+        'min_species_id': (
+            'Minimum percent identity for species-level consensus. '
+            'Suggested values are: 95.2 for ITS sequencing, '
+            '99.0 for 18S sequencing, 97.0 for 16S sequencing, and '
+            'something just below 95.0 for metagenomic sequencing '
+            '(average nucleotide identity between genomes within a '
+            'species is close to 95%).'),
+        'min_genus_id': (
+            'Minimum percent identity for genus-level consensus. '
+            'Suggested values are: 83.0 for ITS sequencing, '
+            '96.0 for 18S sequencing, 90-ish for 16S sequencing, and '
+            'probably the same as min_id for metagenomic sequencing.'),
+        'min_id': (
+            'Minimum percent identity for reference sequences at any '
+            'taxonomic rank.  Something around 80 is generally a good '
+            'value here.'),
     },
     output_descriptions={
         'classification': 'Taxonomy classifications of query sequences.'},
