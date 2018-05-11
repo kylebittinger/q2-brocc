@@ -21,5 +21,6 @@ install:
 script:
   - make lint
   - make test-cov
+  - pip install -q https://github.com/kylebittinger/brocc/archive/master.zip
 after_success:
   - coveralls
