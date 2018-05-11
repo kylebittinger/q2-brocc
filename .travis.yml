@@ -17,10 +17,10 @@ install:
   - conda install -q pytest-cov
   - pip install -q flake8 coveralls
   - pip install -q https://github.com/qiime2/q2lint/archive/master.zip
+  - pip install -q https://github.com/kylebittinger/brocc/archive/master.zip
   - make install
 script:
   - make lint
   - make test-cov
-  - pip install -q https://github.com/kylebittinger/brocc/archive/master.zip
 after_success:
   - coveralls
