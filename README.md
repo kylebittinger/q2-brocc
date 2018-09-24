@@ -123,8 +123,32 @@ of a taxonomic assignment.
 
 <img src="tutorial/brocc_algorithm_1.png?raw=true" width="400" height="400" />
 
-The voting stage of BROCC's algorithm also includes some machinery to
-handle uninformative or generic taxa (e.g. "environmental samples").
+The voting stage of BROCC's algorithm includes some machinery to
+handle uninformative or generic taxa (e.g. "environmental
+samples"). These are removed before the voting starts at each
+rank. Also, notice at the end of the process that in addition to
+reaching a consensus, the leading candidate taxon must surpass a
+minimum absolute number of votes, typically 3.  You probably wouldn't
+want to base your assignment on a single reference sequence in nt; the
+whole idea behind BROCC is to look for a consensus among multiple
+hits.
 
 <img src="tutorial/brocc_algorithm_2.png?raw=true" width="400" height="418" />
+
+The similarity threshold and consensus thresholds change with each
+rank.  Generally, the similarity threshold should be very high at the
+species level (average nucleotide identity within species is around
+95%).  At the phylum level, however, we can be much more loose in
+considering hits.
+
+<img src="tutorial/brocc_rank_specific_parameters.png?raw=true" width="509" height="400" />
+
+Conversely, our requirements for a consensus are lowest at the species
+level (winner needs 60% of votes). This is because we may legitimately
+collect hits to a neighboring species.  However, the consensus
+threshold is raised as we move to higher and higher ranks in the
+taxonomy, up to 90% at the phylum level.  For example, if the leading
+phylum represented 70% of the total vote, BROCC would not assign to
+that phylum.
+
 
