@@ -119,4 +119,4 @@ control.
 
 The quality control portion of BROCC's workflow is illustrated below.  If certain requirements aren't satisfied, a message is printed instead of a taxonomic assignment.
 
-[BROCC workflow 1](tutorial/brocc_algorithm_1.png?raw=true)
+![BROCC workflow 1](tutorial/brocc_algorithm_1.png?raw=true)
