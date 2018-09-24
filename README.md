@@ -110,5 +110,13 @@ sequence named "trichosporon1" should be assigned to "Eukaryota;
 Fungi; Basidiomycota; Tremellomycetes; Trichosporonales;
 Trichosporonaceae; Trichosporon; Trichosporon asahii".
 
-    
+## The BROCC algorithm
 
+The goal of BROCC is to generate reliable taxonomic assignments from a
+set of BLAST results. Because we often work with the nt database from
+NCBI, the software has a number of features to help with quality
+control.
+
+The quality control portion of BROCC's workflow is illustrated below.  If certain requirements aren't satisfied, a message is printed instead of a taxonomic assignment.
+
+[BROCC workflow 1](tutorial/brocc_algorithm_1.png?raw=true)
