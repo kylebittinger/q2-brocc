@@ -1,7 +1,5 @@
 # q2-brocc
 
-[![Build Status](https://travis-ci.org/kylebittinger/q2-brocc.svg?branch=master)](https://travis-ci.org/kylebittinger/q2-brocc)
-
 This is a QIIME 2 plugin to support the BROCC software for taxonomic
 assignment. BROCC was originally built to generate taxonomic
 assignments of marker gene sequences from fungi. However, we've found
