@@ -95,9 +95,9 @@ We'll run the BROCC plugin using the command:
 
     qiime brocc classify-brocc --i-query query.qza --o-classification query-brocc.qza
 
-Once the classifier has finished running, the `brocc-fungi-test`
-directory should contain a QIIME 2 artifact, `query-brocc.qza`.  We
-can create a visualization for this artifact by running:
+Once the classifier has finished running, you should see a QIIME 2
+artifact file, `query-brocc.qza`.  We can create a visualization for
+this artifact by running:
 
     qiime metadata tabulate --m-input-file query-brocc.qza --o-visualization query-brocc.qzv
 	
