@@ -19,7 +19,10 @@ class BroccTests(TestPluginBase):
         reads_fp = self.get_data_path('query.fasta')
         reads = DNAFASTAFormat(reads_fp, mode='r')
         blastdb = self.get_data_path('somefungi.fasta')
-        result = classify_brocc(reads, blastdb=str(blastdb))
+        result = classify_brocc(
+            reads, blastdb=str(blastdb),
+            min_species_id=95.0, min_genus_id=85.0,
+        )
         self.assertEqual(result.Taxon.to_dict(), expected_assignments)
 
 
