@@ -19,6 +19,9 @@ setup(
     description="QIIME2 plugin for the BROCC taxonomic classifier",
     license='BSD-3-Clause',
     url="https://github.com/kylebittinger/q2-brocc",
+    install_requires=[
+        'brocc',
+    ],
     entry_points={
         'qiime2.plugins':
         ['q2-brocc=q2_brocc.plugin_setup:plugin']
@@ -28,4 +31,9 @@ setup(
         'q2_brocc.tests': ['data/*'],
     },
     zip_safe=False,
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: BSD License",
+        "Topic :: Scientific/Engineering :: Bio-Informatics",
+    ],
 )
