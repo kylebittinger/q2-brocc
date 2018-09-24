@@ -141,7 +141,7 @@ species level (average nucleotide identity within species is around
 95%).  At the phylum level, however, we can be much more loose in
 considering hits.
 
-<img src="tutorial/brocc_rank_specific_parameters.png?raw=true" width="509" height="400" />
+<img src="tutorial/brocc_rank_specific_parameters.png?raw=true" width="375" height="295" />
 
 Conversely, our requirements for a consensus are lowest at the species
 level (winner needs 60% of votes). This is because we may legitimately
